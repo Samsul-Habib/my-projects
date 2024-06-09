@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Application</title>
+</head>
+<body>
+    <h2>Enter Data</h2>
+    <form action="/submit" method="post">
+        <label for="month">Month:</label>
+        <select name="month" required>
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+        </select><br>
+
+        <label for="boarder_name">Boarder Name:</label>
+        <input list="boarders" name="boarder_name" required>
+        <datalist id="boarders">
+            <option value="A">
+            <option value="B">
+            <option value="C">
+            <option value="D">
+            <option value="E">
+            <option value="F">    
+            <!-- Add options for other boarder names -->
+        </datalist><br>
+
+        <label for="room_rent">Room Rent:</label>
+        <input type="text" name="room_rent" required><br>
+
+        <label for="electric_bill">Electric Bill:</label>
+        <input type="text" name="electric_bill" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
