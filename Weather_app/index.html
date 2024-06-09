@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="weather-container">
+    <div class="location">
+      <h2 id="location">Location</h2>
+    </div>
+    <div class="input-container">
+      <input type="text" id="city-input" placeholder="Enter city name">
+      <button id="get-weather-btn">Get Weather</button>
+    </div>
+    <div class="weather">
+      <div class="temperature">
+        <h1 id="temperature">--°C</h1>
+      </div>
+      <div class="description">
+        <p id="description">--</p>
+      </div>
+      <div id="time"></div>
+      <div id="date"></div>
+    </div>
+  </div>
+  <script src="effect.js"></script>
+  <script>
+    // Function to fetch weather data from OpenWeatherMap API
+    function fetchWeather(city) {
+      const apiKey = '2346edbfa32bfa97a7ccd832fb66e717';
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('location').textContent = `${data.name}, ${data.sys.country}`;
+          const roundedTemperature = Math.round(data.main.temp);
+          document.getElementById('temperature').textContent = `${roundedTemperature}°C`;
+          document.getElementById('description').textContent = data.weather[0].description;
+        })
+        .catch(error => {
+          console.log('Error fetching weather:', error);
+          document.getElementById('location').textContent = 'No result found for this place!';
+          document.getElementById('temperature').textContent = '--°C';
+          document.getElementById('description').textContent = '--';
+        });
+    }
+
+    // Function to handle button click event
+    document.getElementById('get-weather-btn').addEventListener('click', function () {
+      const city = document.getElementById('city-input').value;
+      fetchWeather(city);
+    });
+  </script>
+</body>
+
+</html>
